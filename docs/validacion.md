@@ -2,6 +2,10 @@
 
 Comandos de consulta usados para reproducir las pruebas documentadas. Ejecútalos en las terminales indicadas. No cambian la configuración. La gestión del FortiGate se comprueba exclusivamente desde su interfaz gráfica, como exige la práctica.
 
+Se incluyen versiones ejecutables de las comprobaciones de clientes y de puertos en [`scripts/`](../scripts/). Son scripts de validación de solo lectura; no configuran equipos ni contienen credenciales.
+
+Desde la raíz del repositorio, en cada cliente Linux ejecuta `bash scripts/validar-cliente-linux.sh standard` o `bash scripts/validar-cliente-linux.sh privileged`, según corresponda. En el Jump Server, ejecuta `powershell -ExecutionPolicy Bypass -File scripts/Validar-Puertos-Web.ps1`.
+
 ## DHCP — PC-STANDARD y PC-PRIVILEGED
 
 En cada terminal Linux:

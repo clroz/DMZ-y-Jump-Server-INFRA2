@@ -1,0 +1,28 @@
+# PC-PRIVILEGED - estado de red
+2026-10-10T20:02:37+00:00
+PC-PRIVILEGED
+lo               UNKNOWN        127.0.0.1/8
+eth1.10@eth1     UP             10.17.45.11/25
+eth0@if32        UP             10.177.0.4/16
+docker40_0@if33  DOWN
+eth1@if35        UP
+ROUTES
+default via 10.17.45.1 dev eth1.10
+10.17.45.0/25 dev eth1.10 proto kernel scope link src 10.17.45.11
+10.177.0.0/16 dev eth0 proto kernel scope link src 10.177.0.4
+DHCP_LEASE
+lease {
+  interface "eth1.10";
+  fixed-address 10.17.45.11;
+  option subnet-mask 255.255.255.128;
+  option routers 10.17.45.1;
+  option dhcp-lease-time 4294967295;
+  option dhcp-message-type 5;
+  option domain-name-servers 10.17.45.1;
+  option dhcp-server-identifier 10.17.45.1;
+  option broadcast-address 10.17.45.127;
+  option host-name "PC-PRIVILEGED";
+  renew 2 2094/10/26 14:59:32;
+  rebind 2 2145/11/09 23:25:01;
+  expire 0 2162/11/14 18:13:39;
+}

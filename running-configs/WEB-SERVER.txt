@@ -1,0 +1,20 @@
+# WEB-SERVER - interfaces, rutas y servicios TCP escuchando
+2026-10-10T20:02:36+00:00
+WEB-SERVER
+lo               UNKNOWN        127.0.0.1/8
+eth0@if26        UP             10.177.0.3/16
+docker33_0@if27  DOWN
+eth1@if29        UP             10.17.45.130/29
+ROUTES
+default via 10.17.45.129 dev eth1
+10.17.45.128/29 dev eth1 proto kernel scope link src 10.17.45.130
+10.177.0.0/16 dev eth0 proto kernel scope link src 10.177.0.3
+LISTENING
+Netid  State   Recv-Q  Send-Q         Local Address:Port     Peer Address:Port  Process
+tcp    LISTEN  0       128                  0.0.0.0:80            0.0.0.0:*      users:(("apache2",pid=96,fd=3),("apache2",pid=95,fd=3),("apache2",pid=91,fd=3))
+tcp    LISTEN  0       128                  0.0.0.0:22            0.0.0.0:*      users:(("sshd",pid=58,fd=3))
+tcp    LISTEN  0       128                  0.0.0.0:443           0.0.0.0:*      users:(("apache2",pid=96,fd=4),("apache2",pid=95,fd=4),("apache2",pid=91,fd=4))
+tcp    LISTEN  0       2         [::ffff:127.0.0.1]:3350                *:*      users:(("xrdp-sesman",pid=393,fd=6))
+tcp    LISTEN  0       128                     [::]:22               [::]:*      users:(("sshd",pid=58,fd=4))
+tcp    LISTEN  0       64                         *:23                  *:*      users:(("xinetd",pid=64,fd=5))
+tcp    LISTEN  0       2                          *:3389                *:*      users:(("xrdp",pid=396,fd=10))

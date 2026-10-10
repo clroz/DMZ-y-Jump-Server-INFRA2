@@ -1,0 +1,1824 @@
+
+### show system global
+
+config system global
+
+    set admin-server-cert "Fortinet_Factory"
+
+    set admin-sport 8443
+
+    set alias "FortiGate-VM64-KVM"
+
+    set hostname "FortiGate-VM64-KVM"
+
+    set timezone 04
+
+end
+
+### show system interface
+
+config system interface
+
+    edit "port1"
+
+        set vdom "root"
+
+        set ip 198.51.100.46 255.255.255.252
+
+        set allowaccess ping
+
+        set type physical
+
+        set snmp-index 1
+
+    next
+
+    edit "port2"
+
+        set vdom "root"
+
+        set ip 10.17.45.129 255.255.255.248
+
+        set allowaccess ping https
+
+        set type physical
+
+        set snmp-index 2
+
+    next
+
+    edit "port3"
+
+        set vdom "root"
+
+        set ip 10.17.45.137 255.255.255.248
+
+        set allowaccess ping https http
+
+        set type physical
+
+        set snmp-index 3
+
+    next
+
+    edit "port4"
+
+        set vdom "root"
+
+        set type physical
+
+        set snmp-index 4
+
+    next
+
+    edit "naf.root"
+
+        set vdom "root"
+
+        set type tunnel
+
+        set src-check disable
+
+        set snmp-index 5
+
+    next
+
+    edit "l2t.root"
+
+        set vdom "root"
+
+        set type tunnel
+
+        set snmp-index 6
+
+    next
+
+    edit "ssl.root"
+
+        set vdom "root"
+
+        set type tunnel
+
+        set alias "SSL VPN interface"
+
+        set snmp-index 7
+
+    next
+
+    edit "fortilink"
+
+        set vdom "root"
+
+        set fortilink enable
+
+        set ip 10.255.1.1 255.255.255.0
+
+        set allowaccess ping fabric
+
+        set type aggregate
+
+        set lldp-reception enable
+
+        set lldp-transmission enable
+
+        set snmp-index 8
+
+    next
+
+    edit "INFRA2-S2S"
+
+        set vdom "root"
+
+        set type tunnel
+
+        set snmp-index 9
+
+        set interface "port1"
+
+    next
+
+end
+
+### show router static
+
+config router static
+
+    edit 1
+
+        set gateway 198.51.100.45
+
+        set device "port1"
+
+    next
+
+    edit 2
+
+        set dst 10.17.45.0 255.255.255.128
+
+        set device "INFRA2-S2S"
+
+    next
+
+end
+
+### show firewall address
+
+config firewall address
+
+    edit "none"
+
+        set uuid 3b30bfa6-c2aa-51f1-8f24-6d0787be9e4b
+
+        set subnet 0.0.0.0 255.255.255.255
+
+    next
+
+    edit "login.microsoftonline.com"
+
+        set uuid 3b30c41a-c2aa-51f1-b864-e584a2dac058
+
+        set type fqdn
+
+        set fqdn "login.microsoftonline.com"
+
+    next
+
+    edit "login.microsoft.com"
+
+        set uuid 3b30c820-c2aa-51f1-1c7f-bc532b162437
+
+        set type fqdn
+
+        set fqdn "login.microsoft.com"
+
+    next
+
+    edit "login.windows.net"
+
+        set uuid 3b30c9ec-c2aa-51f1-fea4-4c091aa7bb14
+
+        set type fqdn
+
+        set fqdn "login.windows.net"
+
+    next
+
+    edit "gmail.com"
+
+        set uuid 3b30cbb8-c2aa-51f1-6140-439f7410f1c0
+
+        set type fqdn
+
+        set fqdn "gmail.com"
+
+    next
+
+    edit "wildcard.google.com"
+
+        set uuid 3b30cd66-c2aa-51f1-3fd3-ab5444069b92
+
+        set type fqdn
+
+        set fqdn "*.google.com"
+
+    next
+
+    edit "wildcard.dropbox.com"
+
+        set uuid 3b30cf00-c2aa-51f1-3f58-baab53d0bd23
+
+        set type fqdn
+
+        set fqdn "*.dropbox.com"
+
+    next
+
+    edit "all"
+
+        set uuid 3bbfe9ec-c2aa-51f1-ee98-bf5fe6786ea4
+
+    next
+
+    edit "FIREWALL_AUTH_PORTAL_ADDRESS"
+
+        set uuid 3bbfeb2c-c2aa-51f1-2f59-a957714ab279
+
+    next
+
+    edit "FABRIC_DEVICE"
+
+        set uuid 3bbfebea-c2aa-51f1-b70b-3be6327535c4
+
+        set comment "IPv4 addresses of Fabric Devices."
+
+    next
+
+    edit "SSLVPN_TUNNEL_ADDR1"
+
+        set uuid 3bc03fb4-c2aa-51f1-9c89-aa7d73f44372
+
+        set type iprange
+
+        set start-ip 10.212.134.200
+
+        set end-ip 10.212.134.210
+
+    next
+
+    edit "INFRA2_WEB_SERVER"
+
+        set uuid b0a2e594-c2e5-51f1-8e44-b4e1277d8fff
+
+        set subnet 10.17.45.130 255.255.255.255
+
+    next
+
+    edit "INFRA2_JUMP_SERVER"
+
+        set uuid b0b978c2-c2e5-51f1-abf4-aca1eb4a493c
+
+        set subnet 10.17.45.138 255.255.255.255
+
+    next
+
+    edit "INFRA2_USER_STANDARD"
+
+        set uuid 58f5de30-c2ec-51f1-df22-458f39014b52
+
+        set subnet 10.17.45.10 255.255.255.255
+
+    next
+
+    edit "INFRA2_USER_PRIVILEGED"
+
+        set uuid 58fc620a-c2ec-51f1-3487-84af8bdee171
+
+        set subnet 10.17.45.11 255.255.255.255
+
+    next
+
+end
+
+### show firewall addrgrp
+
+config firewall addrgrp
+
+    edit "G Suite"
+
+        set uuid 3b30d108-c2aa-51f1-ed53-89aa78dc48f4
+
+        set member "gmail.com" "wildcard.google.com"
+
+    next
+
+    edit "Microsoft Office 365"
+
+        set uuid 3b30d464-c2aa-51f1-7fe8-7ad36ec3dbc1
+
+        set member "login.microsoftonline.com" "login.microsoft.com" "login.windows.net"
+
+    next
+
+    edit "INFRA2_USERS"
+
+        set uuid 5900cea8-c2ec-51f1-d5b9-da6c91aa4309
+
+        set member "INFRA2_USER_STANDARD" "INFRA2_USER_PRIVILEGED"
+
+    next
+
+end
+
+### show firewall service custom
+
+config firewall service custom
+
+    edit "DNS"
+
+        set category "Network Services"
+
+        set tcp-portrange 53
+
+        set udp-portrange 53
+
+    next
+
+    edit "HTTP"
+
+        set category "Web Access"
+
+        set tcp-portrange 80
+
+    next
+
+    edit "HTTPS"
+
+        set category "Web Access"
+
+        set tcp-portrange 443
+
+    next
+
+    edit "IMAP"
+
+        set category "Email"
+
+        set tcp-portrange 143
+
+    next
+
+    edit "IMAPS"
+
+        set category "Email"
+
+        set tcp-portrange 993
+
+    next
+
+    edit "LDAP"
+
+        set category "Authentication"
+
+        set tcp-portrange 389
+
+    next
+
+    edit "DCE-RPC"
+
+        set category "Remote Access"
+
+        set tcp-portrange 135
+
+        set udp-portrange 135
+
+    next
+
+    edit "POP3"
+
+        set category "Email"
+
+        set tcp-portrange 110
+
+    next
+
+    edit "POP3S"
+
+        set category "Email"
+
+        set tcp-portrange 995
+
+    next
+
+    edit "SAMBA"
+
+        set category "File Access"
+
+        set tcp-portrange 139
+
+    next
+
+    edit "SMTP"
+
+        set category "Email"
+
+        set tcp-portrange 25
+
+    next
+
+    edit "SMTPS"
+
+        set category "Email"
+
+        set tcp-portrange 465
+
+    next
+
+    edit "KERBEROS"
+
+        set category "Authentication"
+
+        set tcp-portrange 88 464
+
+        set udp-portrange 88 464
+
+    next
+
+    edit "LDAP_UDP"
+
+        set category "Authentication"
+
+        set udp-portrange 389
+
+    next
+
+    edit "SMB"
+
+        set category "File Access"
+
+        set tcp-portrange 445
+
+    next
+
+    edit "FTP"
+
+        set category "File Access"
+
+        set tcp-portrange 21
+
+    next
+
+    edit "FTP_GET"
+
+        set category "File Access"
+
+        set tcp-portrange 21
+
+    next
+
+    edit "FTP_PUT"
+
+        set category "File Access"
+
+        set tcp-portrange 21
+
+    next
+
+    edit "ALL"
+
+        set category "General"
+
+        set protocol IP
+
+    next
+
+    edit "ALL_TCP"
+
+        set category "General"
+
+        set tcp-portrange 1-65535
+
+    next
+
+    edit "ALL_UDP"
+
+        set category "General"
+
+        set udp-portrange 1-65535
+
+    next
+
+    edit "ALL_ICMP"
+
+        set category "General"
+
+        set protocol ICMP
+
+        unset icmptype
+
+    next
+
+    edit "ALL_ICMP6"
+
+        set category "General"
+
+        set protocol ICMP6
+
+        unset icmptype
+
+    next
+
+    edit "GRE"
+
+        set category "Tunneling"
+
+        set protocol IP
+
+        set protocol-number 47
+
+    next
+
+    edit "AH"
+
+        set category "Tunneling"
+
+        set protocol IP
+
+        set protocol-number 51
+
+    next
+
+    edit "ESP"
+
+        set category "Tunneling"
+
+        set protocol IP
+
+        set protocol-number 50
+
+    next
+
+    edit "AOL"
+
+        set visibility disable
+
+        set tcp-portrange 5190-5194
+
+    next
+
+    edit "BGP"
+
+        set category "Network Services"
+
+        set tcp-portrange 179
+
+    next
+
+    edit "DHCP"
+
+        set category "Network Services"
+
+        set udp-portrange 67-68
+
+    next
+
+    edit "FINGER"
+
+        set visibility disable
+
+        set tcp-portrange 79
+
+    next
+
+    edit "GOPHER"
+
+        set visibility disable
+
+        set tcp-portrange 70
+
+    next
+
+    edit "H323"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange 1720 1503
+
+        set udp-portrange 1719
+
+    next
+
+    edit "IKE"
+
+        set category "Tunneling"
+
+        set udp-portrange 500 4500
+
+    next
+
+    edit "Internet-Locator-Service"
+
+        set visibility disable
+
+        set tcp-portrange 389
+
+    next
+
+    edit "IRC"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange 6660-6669
+
+    next
+
+    edit "L2TP"
+
+        set category "Tunneling"
+
+        set tcp-portrange 1701
+
+        set udp-portrange 1701
+
+    next
+
+    edit "NetMeeting"
+
+        set visibility disable
+
+        set tcp-portrange 1720
+
+    next
+
+    edit "NFS"
+
+        set category "File Access"
+
+        set tcp-portrange 111 2049
+
+        set udp-portrange 111 2049
+
+    next
+
+    edit "NNTP"
+
+        set visibility disable
+
+        set tcp-portrange 119
+
+    next
+
+    edit "NTP"
+
+        set category "Network Services"
+
+        set tcp-portrange 123
+
+        set udp-portrange 123
+
+    next
+
+    edit "OSPF"
+
+        set category "Network Services"
+
+        set protocol IP
+
+        set protocol-number 89
+
+    next
+
+    edit "PC-Anywhere"
+
+        set category "Remote Access"
+
+        set tcp-portrange 5631
+
+        set udp-portrange 5632
+
+    next
+
+    edit "PING"
+
+        set category "Network Services"
+
+        set protocol ICMP
+
+        set icmptype 8
+
+        unset icmpcode
+
+    next
+
+    edit "TIMESTAMP"
+
+        set protocol ICMP
+
+        set visibility disable
+
+        set icmptype 13
+
+        unset icmpcode
+
+    next
+
+    edit "INFO_REQUEST"
+
+        set protocol ICMP
+
+        set visibility disable
+
+        set icmptype 15
+
+        unset icmpcode
+
+    next
+
+    edit "INFO_ADDRESS"
+
+        set protocol ICMP
+
+        set visibility disable
+
+        set icmptype 17
+
+        unset icmpcode
+
+    next
+
+    edit "ONC-RPC"
+
+        set category "Remote Access"
+
+        set tcp-portrange 111
+
+        set udp-portrange 111
+
+    next
+
+    edit "PPTP"
+
+        set category "Tunneling"
+
+        set tcp-portrange 1723
+
+    next
+
+    edit "QUAKE"
+
+        set visibility disable
+
+        set udp-portrange 26000 27000 27910 27960
+
+    next
+
+    edit "RAUDIO"
+
+        set visibility disable
+
+        set udp-portrange 7070
+
+    next
+
+    edit "REXEC"
+
+        set visibility disable
+
+        set tcp-portrange 512
+
+    next
+
+    edit "RIP"
+
+        set category "Network Services"
+
+        set udp-portrange 520
+
+    next
+
+    edit "RLOGIN"
+
+        set visibility disable
+
+        set tcp-portrange 513:512-1023
+
+    next
+
+    edit "RSH"
+
+        set visibility disable
+
+        set tcp-portrange 514:512-1023
+
+    next
+
+    edit "SCCP"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange 2000
+
+    next
+
+    edit "SIP"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set t
+
+config firewall service custom
+
+    edit "DNS"
+
+        set category "Network Services"
+
+        set tcp-portrange 53
+
+        set udp-portrange 53
+
+    next
+
+    edit "HTTP"
+
+        set category "Web Access"
+
+        set tcp-portrange 80
+
+    next
+
+    edit "HTTPS"
+
+        set category "Web Access"
+
+        set tcp-portrange 443
+
+    next
+
+    edit "IMAP"
+
+        set category "Email"
+
+        set tcp-portrange 143
+
+    next
+
+    edit "IMAPS"
+
+        set category "Email"
+
+        set tcp-portrange 993
+
+    next
+
+    edit "LDAP"
+
+        set category "Authentication"
+
+        set tcp-portrange 389
+
+    next
+
+    edit "DCE-RPC"
+
+        set category "Remote Access"
+
+        set tcp-portrange 135
+
+        set udp-portrange 135
+
+    next
+
+    edit "POP3"
+
+        set category "Email"
+
+        set tcp-portrange 110
+
+    next
+
+    edit "POP3S"
+
+        set category "Email"
+
+        set tcp-portrange 995
+
+    next
+
+    edit "SAMBA"
+
+        set category "File Access"
+
+        set tcp-portrange 139
+
+    next
+
+    edit "SMTP"
+
+        set category "Email"
+
+        set tcp-portrange 25
+
+    next
+
+    edit "SMTPS"
+
+        set category "Email"
+
+        set tcp-portrange 465
+
+    next
+
+    edit "KERBEROS"
+
+        set category "Authentication"
+
+        set tcp-portrange 88 464
+
+        set udp-portrange 88 464
+
+    next
+
+    edit "LDAP_UDP"
+
+        set category "Authentication"
+
+        set udp-portrange 389
+
+    next
+
+    edit "SMB"
+
+        set category "File Access"
+
+        set tcp-portrange 445
+
+    next
+
+    edit "FTP"
+
+        set category "File Access"
+
+        set tcp-portrange 21
+
+    next
+
+    edit "FTP_GET"
+
+        set category "File Access"
+
+        set tcp-portrange 21
+
+    next
+
+    edit "FTP_PUT"
+
+        set category "File Access"
+
+        set tcp-portrange 21
+
+    next
+
+    edit "ALL"
+
+        set category "General"
+
+        set protocol IP
+
+    next
+
+    edit "ALL_TCP"
+
+        set category "General"
+
+        set tcp-portrange 1-65535
+
+    next
+
+    edit "ALL_UDP"
+
+        set category "General"
+
+        set udp-portrange 1-65535
+
+    next
+
+    edit "ALL_ICMP"
+
+        set category "General"
+
+        set protocol ICMP
+
+        unset icmptype
+
+    next
+
+    edit "ALL_ICMP6"
+
+        set category "General"
+
+        set protocol ICMP6
+
+        unset icmptype
+
+    next
+
+    edit "GRE"
+
+        set category "Tunneling"
+
+        set protocol IP
+
+        set protocol-number 47
+
+    next
+
+    edit "AH"
+
+        set category "Tunneling"
+
+        set protocol IP
+
+        set protocol-number 51
+
+    next
+
+    edit "ESP"
+
+        set category "Tunneling"
+
+        set protocol IP
+
+        set protocol-number 50
+
+    next
+
+    edit "AOL"
+
+        set visibility disable
+
+        set tcp-portrange 5190-5194
+
+    next
+
+    edit "BGP"
+
+        set category "Network Services"
+
+        set tcp-portrange 179
+
+    next
+
+    edit "DHCP"
+
+        set category "Network Services"
+
+        set udp-portrange 67-68
+
+    next
+
+    edit "FINGER"
+
+        set visibility disable
+
+        set tcp-portrange 79
+
+    next
+
+    edit "GOPHER"
+
+        set visibility disable
+
+        set tcp-portrange 70
+
+    next
+
+    edit "H323"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange 1720 1503
+
+        set udp-portrange 1719
+
+    next
+
+    edit "IKE"
+
+        set category "Tunneling"
+
+        set udp-portrange 500 4500
+
+    next
+
+    edit "Internet-Locator-Service"
+
+        set visibility disable
+
+        set tcp-portrange 389
+
+    next
+
+    edit "IRC"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange 6660-6669
+
+    next
+
+    edit "L2TP"
+
+        set category "Tunneling"
+
+        set tcp-portrange 1701
+
+        set udp-portrange 1701
+
+    next
+
+    edit "NetMeeting"
+
+        set visibility disable
+
+        set tcp-portrange 1720
+
+    next
+
+    edit "NFS"
+
+        set category "File Access"
+
+        set tcp-portrange 111 2049
+
+        set udp-portrange 111 2049
+
+    next
+
+    edit "NNTP"
+
+        set visibility disable
+
+        set tcp-portrange 119
+
+    next
+
+    edit "NTP"
+
+        set category "Network Services"
+
+        set tcp-portrange 123
+
+        set udp-portrange 123
+
+    next
+
+    edit "OSPF"
+
+        set category "Network Services"
+
+        set protocol IP
+
+        set protocol-number 89
+
+    next
+
+    edit "PC-Anywhere"
+
+        set category "Remote Access"
+
+        set tcp-portrange 5631
+
+        set udp-portrange 5632
+
+    next
+
+    edit "PING"
+
+        set category "Network Services"
+
+        set protocol ICMP
+
+        set icmptype 8
+
+        unset icmpcode
+
+    next
+
+    edit "TIMESTAMP"
+
+        set protocol ICMP
+
+        set visibility disable
+
+        set icmptype 13
+
+        unset icmpcode
+
+    next
+
+    edit "INFO_REQUEST"
+
+        set protocol ICMP
+
+        set visibility disable
+
+        set icmptype 15
+
+        unset icmpcode
+
+    next
+
+    edit "INFO_ADDRESS"
+
+        set protocol ICMP
+
+        set visibility disable
+
+        set icmptype 17
+
+        unset icmpcode
+
+    next
+
+    edit "ONC-RPC"
+
+        set category "Remote Access"
+
+        set tcp-portrange 111
+
+        set udp-portrange 111
+
+    next
+
+    edit "PPTP"
+
+        set category "Tunneling"
+
+        set tcp-portrange 1723
+
+    next
+
+    edit "QUAKE"
+
+        set visibility disable
+
+        set udp-portrange 26000 27000 27910 27960
+
+    next
+
+    edit "RAUDIO"
+
+        set visibility disable
+
+        set udp-portrange 7070
+
+    next
+
+    edit "REXEC"
+
+        set visibility disable
+
+        set tcp-portrange 512
+
+    next
+
+    edit "RIP"
+
+        set category "Network Services"
+
+        set udp-portrange 520
+
+    next
+
+    edit "RLOGIN"
+
+        set visibility disable
+
+        set tcp-portrange 513:512-1023
+
+    next
+
+    edit "RSH"
+
+        set visibility disable
+
+        set tcp-portrange 514:512-1023
+
+    next
+
+    edit "SCCP"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange 2000
+
+    next
+
+    edit "SIP"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange 5060
+
+        set udp-portrange 5060
+
+    next
+
+    edit "SIP-MSNmessenger"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange  1863
+
+    next
+
+    edit "SNMP"
+
+        set category "Network Services"
+
+        set tcp-portrange 161-162
+
+        set udp-portrange 161-162
+
+    next
+
+    edit "SSH"
+
+        set category "Remote Access"
+
+        set tcp-portrange 22
+
+    next
+
+    edit "SYSLOG"
+
+        set category "Network Services"
+
+        set udp-portrange 514
+
+    next
+
+    edit "TALK"
+
+        set visibility disable
+
+        set udp-portrange 517-518
+
+    next
+
+    edit "TELNET"
+
+        set category "Remote Access"
+
+        set tcp-portrange 23
+
+    next
+
+    edit "TFTP"
+
+        set category "File Access"
+
+        set udp-portrange 69
+
+    next
+
+    edit "MGCP"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange 2428
+
+        set udp-portrange 2427 2727
+
+    next
+
+    edit "UUCP"
+
+        set visibility disable
+
+        set tcp-portrange 540
+
+    next
+
+    edit "VDOLIVE"
+
+        set visibility disable
+
+        set tcp-portrange 7000-7010
+
+    next
+
+    edit "WAIS"
+
+        set visibility disable
+
+        set tcp-portrange 210
+
+    next
+
+    edit "WINFRAME"
+
+        set visibility disable
+
+        set tcp-portrange 1494 2598
+
+    next
+
+    edit "X-WINDOWS"
+
+        set category "Remote Access"
+
+        set tcp-portrange 6000-6063
+
+    next
+
+    edit "PING6"
+
+        set protocol ICMP6
+
+        set visibility disable
+
+        set icmptype 128
+
+        unset icmpcode
+
+    next
+
+    edit "MS-SQL"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange 1433 1434
+
+    next
+
+    edit "MYSQL"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange 3306
+
+    next
+
+    edit "RDP"
+
+        set category "Remote Access"
+
+        set tcp-portrange 3389
+
+    next
+
+    edit "VNC"
+
+        set category "Remote Access"
+
+        set tcp-portrange 5900
+
+    next
+
+    edit "DHCP6"
+
+        set category "Network Services"
+
+        set udp-portrange 546 547
+
+    next
+
+    edit "SQUID"
+
+        set category "Tunneling"
+
+        set tcp-portrange 3128
+
+    next
+
+    edit "SOCKS"
+
+        set category "Tunneling"
+
+        set tcp-portrange 1080
+
+        set udp-portrange 1080
+
+    next
+
+    edit "WINS"
+
+        set category "Remote Access"
+
+        set tcp-portrange 1512
+
+        set udp-portrange 1512
+
+    next
+
+    edit "RADIUS"
+
+        set category "Authentication"
+
+        set udp-portrange 1812 1813
+
+    next
+
+    edit "RADIUS-OLD"
+
+        set visibility disable
+
+        set udp-portrange 1645 1646
+
+    next
+
+    edit "CVSPSERVER"
+
+        set visibility disable
+
+        set tcp-portrange 2401
+
+        set udp-portrange 2401
+
+    next
+
+    edit "AFS3"
+
+        set category "File Access"
+
+        set tcp-portrange 7000-7009
+
+        set udp-portrange 7000-7009
+
+    next
+
+    edit "TRACEROUTE"
+
+        set category "Network Services"
+
+        set udp-portrange 33434-33535
+
+    next
+
+    edit "RTSP"
+
+        set category "VoIP, Messaging & Other Applications"
+
+        set tcp-portrange 554 7070 8554
+
+        set udp-portrange 554
+
+    next
+
+    edit "MMS"
+
+        set visibility disable
+
+        set tcp-portrange 1755
+
+        set udp-portrange 1024-5000
+
+    next
+
+    edit "NONE"
+
+        set visibility disable
+
+        set tcp-portrange 0
+
+    next
+
+    edit "webproxy"
+
+        set proxy enable
+
+        set category "Web Proxy"
+
+        set protocol ALL
+
+        set tcp-portrange 0-65535:0-65535
+
+    next
+
+end
+
+### show firewall policy
+
+ show firewall policy
+
+config firewall policy
+
+    edit 1
+
+        set name "DENY_DMZ_TO_INTERNET"
+
+        set uuid bda7dbc4-c2e4-51f1-4b51-ab64909f1093
+
+        set srcintf "port2"
+
+        set dstintf "port1"
+
+        set srcaddr "all"
+
+        set dstaddr "all"
+
+        set schedule "always"
+
+        set service "ALL"
+
+        set logtraffic all
+
+        set comments "Fail closed: no WAN access until approved update endpoint allowlist is defined."
+
+    next
+
+    edit 2
+
+        set name "ALLOW_JUMP_TO_WEB_REQUIRED"
+
+        set uuid b0da1da2-c2e5-51f1-8a1d-b37363bd0d27
+
+        set srcintf "port3"
+
+        set dstintf "port2"
+
+        set action accept
+
+        set srcaddr "INFRA2_JUMP_SERVER"
+
+        set dstaddr "INFRA2_WEB_SERVER"
+
+        set schedule "always"
+
+        set service "HTTPS" "RDP" "SSH"
+
+        set logtraffic all
+
+    next
+
+    edit 3
+
+        set name "DENY_VLAN10_DIRECT_TO_WEB"
+
+        set uuid 591a9248-c2ec-51f1-5550-e84469638c94
+
+        set srcintf "INFRA2-S2S"
+
+        set dstintf "port2"
+
+        set srcaddr "INFRA2_USERS"
+
+        set dstaddr "INFRA2_WEB_SERVER"
+
+        set schedule "always"
+
+        set service "ALL"
+
+        set logtraffic all
+
+    next
+
+    edit 4
+
+        set name "DENY_STANDARD_SSH_TO_JUMP"
+
+        set uuid 592767f2-c2ec-51f1-15ee-20b6ef60a9ab
+
+        set srcintf "INFRA2-S2S"
+
+        set dstintf "port3"
+
+        set srcaddr "INFRA2_USER_STANDARD"
+
+        set dstaddr "INFRA2_JUMP_SERVER"
+
+        set schedule "always"
+
+        set service "SSH"
+
+        set logtraffic all
+
+    next
+
+    edit 5
+
+        set name "ALLOW_STANDARD_HTTPS_TO_JUMP"
+
+        set uuid 593139f8-c2ec-51f1-a765-477686e2790c
+
+        set srcintf "INFRA2-S2S"
+
+        set dstintf "port3"
+
+        set action accept
+
+        set srcaddr "INFRA2_USER_STANDARD"
+
+        set dstaddr "INFRA2_JUMP_SERVER"
+
+        set schedule "always"
+
+        set service "HTTPS"
+
+        set logtraffic all
+
+    next
+
+    edit 6
+
+        set name "ALLOW_PRIVILEGED_SERVICES_TO_JUMP"
+
+        set uuid 593938c4-c2ec-51f1-50c7-ee140157677a
+
+        set srcintf "INFRA2-S2S"
+
+        set dstintf "port3"
+
+        set action accept
+
+        set srcaddr "INFRA2_USER_PRIVILEGED"
+
+        set dstaddr "INFRA2_JUMP_SERVER"
+
+        set schedule "always"
+
+        set service "HTTPS" "RDP" "SSH"
+
+        set logtraffic all
+
+    next
+
+    edit 7
+
+        set name "ALLOW_JUMP_TO_INTERNET_WEB"
+
+        set uuid 1b2a3412-c42b-51f1-f76c-01da8532e3c4
+
+        set srcintf "port3"
+
+        set dstintf "port1"
+
+        set action accept
+
+        set srcaddr "INFRA2_JUMP_SERVER"
+
+        set dstaddr "all"
+
+        set schedule "always"
+
+        set service "DNS" "HTTP" "HTTPS"
+
+        set logtraffic all
+
+        set nat enable
+
+        set comments "Jump Server updates and Web Client egress"
+
+    next
+
+end
+
+### show vpn ipsec phase1-interface
+
+config vpn ipsec phase1-interface
+
+    edit "INFRA2-S2S"
+
+        set interface "port1"
+
+        set ike-version 2
+
+        set peertype any
+
+        set net-device disable
+
+        set proposal des-sha512
+
+        set comments "Evaluation low-encryption only; isolated lab"
+
+        set dhgrp 14
+
+        set remote-gw 203.0.113.17
+
+        set psksecret <REDACTED>
+
+    next
+
+end
+
+### show vpn ipsec phase2-interface
+
+config vpn ipsec phase2-interface
+
+    edit "INFRA2-USER-P2"
+
+        set phase1name "INFRA2-S2S"
+
+        set proposal des-sha512
+
+        set dhgrp 14
+
+        set auto-negotiate enable
+
+        set src-subnet 10.17.45.138 255.255.255.255
+
+        set dst-subnet 10.17.45.0 255.255.255.128
+
+    next
+
+end

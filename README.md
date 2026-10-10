@@ -1,8 +1,14 @@
 # DMZ y Jump Server — INFRA2
 
+[🎥 Video demostrativo del laboratorio](https://1drv.ms/f/c/6b63aaec5c0ec7fc/IgDdeSxuWd94R5C7nNdUCZQvATgOQLWWoG6D2exazDmtuqs?e=XxxQHa)
+
 Práctica académica de segmentación de red, VPN site-to-site, servidor de salto y RemoteApp, implementada en PNETLab con FortiGate.
 
-[Video de demostración en OneDrive](https://1drv.ms/f/c/6b63aaec5c0ec7fc/IgDdeSxuWd94R5C7nNdUCZQvATgOQLWWoG6D2exazDmtuqs?e=XxxQHa) · [Galería de evidencias](docs/evidencias.md) · [Procedimiento de validación](docs/validacion.md)
+[Galería de evidencias](docs/evidencias.md) · [Procedimiento de validación](docs/validacion.md) · [Inventario de scripts](scripts/README.md) · [Archivo de topología PNETLab](<lab/DMZ y Jump Server INFRA2.unl>) · [Running-configs](running-configs/README.md)
+
+## Propósito del laboratorio
+
+Demostrar una arquitectura segmentada para publicar aplicaciones RemoteApp y permitir que usuarios estándar y privilegiados accedan a un Jump Server según sus permisos. El tráfico hacia el Web Server debe pasar por el Jump Server; el acceso directo desde la VLAN de usuarios se deniega. El laboratorio también verifica un túnel VPN site-to-site y documenta las reglas de acceso con evidencias reproducibles.
 
 ## Topología del laboratorio
 
@@ -74,3 +80,9 @@ La cuenta privilegiada pertenece a `RDS-WEB` para compartir Edge y a `RDS-PRIVIL
 ## Evidencias
 
 Consulta [docs/evidencias.md](docs/evidencias.md) para las capturas originales organizadas por función.
+
+## Topología y configuraciones
+
+El archivo [DMZ y Jump Server INFRA2.unl](<lab/DMZ y Jump Server INFRA2.unl>) permite importar la topología en PNETLab. Las configuraciones capturadas desde el laboratorio activo, el alcance de cada archivo y los secretos redactados están descritos en [running-configs](running-configs/README.md).
+
+La topología referencia imágenes de PNETLab para FortiGate y Windows Server, además de las imágenes personalizadas `pnetlab/infra2-web-rdp:1745`, `pnetlab/infra2-red-router:1745` y `pnetlab/infra2-chrome-client:1745`. El archivo `.unl` no incluye esas imágenes binarias; deben existir en el host PNETLab para iniciar todos los nodos.
